@@ -1,0 +1,50 @@
+schema: '2.0'
+stages:
+  preparation:
+    cmd: python src/prepare.py
+    deps:
+    - path: data/raw/banjar_custom_penjualan.xlsx
+      hash: md5
+      md5: d3043502083d1464ac3c9e23ebe0b5e6
+      size: 80263
+    - path: src/prepare.py
+      hash: md5
+      md5: 27882a1af692c564b04414357e34b24d
+      size: 3430
+    outs:
+    - path: data/prepared/data_summary.json
+      hash: md5
+      md5: 84dcf04d82dec535f9ca7297cb2c4f2f
+      size: 419
+    - path: data/prepared/test.csv
+      hash: md5
+      md5: 8c53f950eb9792df5a0299cd3805c26a
+      size: 5503
+    - path: data/prepared/train.csv
+      hash: md5
+      md5: 18859600e6d424bddb70f7e4613cb15a
+      size: 21492
+    - path: plots/data_distribution.png
+      hash: md5
+      md5: 843eea597d922492c1b9dd7ac72979f3
+      size: 20641
+  training:
+    cmd: python src/train.py
+    deps:
+    - path: data/prepared/train.csv
+      hash: md5
+      md5: 18859600e6d424bddb70f7e4613cb15a
+      size: 21492
+    - path: src/train.py
+      hash: md5
+      md5: c1f0f8f3034affc3de7bab7dde184719
+      size: 2729
+    outs:
+    - path: metrics/train_metrics.json
+      hash: md5
+      md5: 50dc034c4fde033200c4eaca02d3460b
+      size: 190
+    - path: models/model.pkl
+      hash: md5
+      md5: 887007f26071eba8401e492f0dd5b312
+      size: 29089
