@@ -17,3 +17,12 @@ stages:
     outs:
     - metrics/train_metrics.json
     - models/model.pkl
+  evaluation:
+    cmd: python src/evaluate.py
+    deps:
+    - data/prepared/test.csv
+    - models/model.pkl
+    - src/evaluate.py
+    outs:
+    - metrics/eval_metrics.json
+    - metrics/test_predictions.csv
