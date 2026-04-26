@@ -1,0 +1,25 @@
+{
+    "input_pesanan": {
+        "jumlah_pesanan": 24,
+        "bahan": "CC 24S",
+        "model_lengan": "Panjang",
+        "sablon_depan": "A3",
+        "sablon_belakang": "A4",
+        "sablon_lengan_kiri": "A5",
+        "sablon_lengan_kanan": "-",
+        "sablon_bawah": "A4"
+    },
+    "hasil_rule_based": {
+        "harga_satuan": 109000,
+        "total_harga": 2616000
+    },
+    "hasil_machine_learning": {
+        "model": "best_model.pkl",
+        "prediksi_harga_satuan": 108190.3,
+        "prediksi_total_harga": 2596567.2
+    },
+    "perbandingan": {
+        "selisih_harga_satuan": 809.7,
+        "selisih_total_harga": 19432.8
+    }
+}

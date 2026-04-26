@@ -26,3 +26,30 @@ stages:
     outs:
     - metrics/eval_metrics.json
     - metrics/test_predictions.csv
+  modeling:
+    cmd: python src/modeling.py
+    deps:
+    - data/prepared/test.csv
+    - data/prepared/train.csv
+    - src/modeling.py
+    outs:
+    - models/best_model.pkl
+    - models/decision_tree.pkl
+    - models/gradient_boosting.pkl
+    - models/linear_regression.pkl
+    - models/random_forest.pkl
+    metrics:
+    - metrics/best_model.json:
+        cache: false
+    - metrics/best_model_predictions.csv:
+        cache: false
+    - metrics/experiment_log.csv:
+        cache: false
+  prediction:
+    cmd: python src/predict.py
+    deps:
+    - models/best_model.pkl
+    - src/predict.py
+    metrics:
+    - metrics/single_prediction_result.json:
+        cache: false

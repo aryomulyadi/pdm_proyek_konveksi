@@ -1,0 +1,5 @@
+model,train_mae,train_rmse,train_r2,test_mae,test_rmse,test_r2
+Gradient Boosting,733.95,937.26,0.9962,1090.61,1491.25,0.9893
+Random Forest,2290.63,2887.12,0.9641,3237.8,4117.66,0.9184
+Decision Tree,3393.13,4295.51,0.9205,4872.5,6505.84,0.7964
+Linear Regression,6484.92,7673.41,0.7462,6331.66,7530.0,0.7272

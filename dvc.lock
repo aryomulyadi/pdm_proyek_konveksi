@@ -72,3 +72,67 @@ stages:
       hash: md5
       md5: 1eabcdf2e2cbc53d00662b9600fa943e
       size: 8496
+  modeling:
+    cmd: python src/modeling.py
+    deps:
+    - path: data/prepared/test.csv
+      hash: md5
+      md5: 8c53f950eb9792df5a0299cd3805c26a
+      size: 5503
+    - path: data/prepared/train.csv
+      hash: md5
+      md5: 18859600e6d424bddb70f7e4613cb15a
+      size: 21492
+    - path: src/modeling.py
+      hash: md5
+      md5: 69b7c5d4820b330d6be6e8e50598a538
+      size: 7864
+    outs:
+    - path: metrics/best_model.json
+      hash: md5
+      md5: ea0f1f93ae78398dceece13e4abcfc84
+      size: 193
+    - path: metrics/best_model_predictions.csv
+      hash: md5
+      md5: c81d03b491fe017558411dec3669e324
+      size: 7859
+    - path: metrics/experiment_log.csv
+      hash: md5
+      md5: 4ced7119bae7434abeb67542c085cde5
+      size: 311
+    - path: models/best_model.pkl
+      hash: md5
+      md5: f49ecf89b0088f5940c973ead86ffaf1
+      size: 276660
+    - path: models/decision_tree.pkl
+      hash: md5
+      md5: 2ed46a09c755709a5a3726ed2bbf7f4e
+      size: 16515
+    - path: models/gradient_boosting.pkl
+      hash: md5
+      md5: f49ecf89b0088f5940c973ead86ffaf1
+      size: 276660
+    - path: models/linear_regression.pkl
+      hash: md5
+      md5: eb82bf1e38971ff8ccba80fa64061709
+      size: 4619
+    - path: models/random_forest.pkl
+      hash: md5
+      md5: 4c6e7ca8a4079eda5649092c6a6c0f8e
+      size: 2785018
+  prediction:
+    cmd: python src/predict.py
+    deps:
+    - path: models/best_model.pkl
+      hash: md5
+      md5: f49ecf89b0088f5940c973ead86ffaf1
+      size: 276660
+    - path: src/predict.py
+      hash: md5
+      md5: cc9aca15b190fc85ada5728ddea78b9d
+      size: 6506
+    outs:
+    - path: metrics/single_prediction_result.json
+      hash: md5
+      md5: 1a44d8beff27d6e09520778a7b6db38f
+      size: 674
