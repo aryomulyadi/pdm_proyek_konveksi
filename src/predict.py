@@ -4,9 +4,9 @@ import joblib
 import pandas as pd
 
 
-# ============================================================
+
 # PATH
-# ============================================================
+
 
 BEST_MODEL_PATH = "models/best_model.pkl"
 OUTPUT_PATH = "metrics/single_prediction_result.json"
@@ -14,9 +14,8 @@ OUTPUT_PATH = "metrics/single_prediction_result.json"
 os.makedirs("metrics", exist_ok=True)
 
 
-# ============================================================
+
 # FUNGSI RULE-BASED PRICE
-# ============================================================
 
 def hitung_harga_rule_based(
     jumlah_pesanan,
@@ -113,14 +112,13 @@ def hitung_harga_rule_based(
     return harga_satuan, total_harga
 
 
-# ============================================================
+
 # DATA INPUT PESANAN BARU
-# ============================================================
 
 data_pesanan = {
     "jumlah_pesanan": 24,
     "bahan": "CC 24S",
-    "model_lengan": "Panjang",
+    "model_lengan": "Pendek",
     "sablon_depan": "A3",
     "sablon_belakang": "A4",
     "sablon_lengan_kiri": "A5",
@@ -129,9 +127,7 @@ data_pesanan = {
 }
 
 
-# ============================================================
 # LOAD MODEL TERBAIK
-# ============================================================
 
 if not os.path.exists(BEST_MODEL_PATH):
     raise FileNotFoundError(
@@ -142,9 +138,7 @@ if not os.path.exists(BEST_MODEL_PATH):
 model = joblib.load(BEST_MODEL_PATH)
 
 
-# ============================================================
 # PREDIKSI MODEL MACHINE LEARNING
-# ============================================================
 
 input_df = pd.DataFrame([data_pesanan])
 
@@ -154,9 +148,7 @@ prediksi_ml = round(float(prediksi_ml), 2)
 total_prediksi_ml = prediksi_ml * data_pesanan["jumlah_pesanan"]
 
 
-# ============================================================
 # HITUNG HARGA RULE-BASED
-# ============================================================
 
 harga_rule_based, total_rule_based = hitung_harga_rule_based(
     jumlah_pesanan=data_pesanan["jumlah_pesanan"],
@@ -170,17 +162,14 @@ harga_rule_based, total_rule_based = hitung_harga_rule_based(
 )
 
 
-# ============================================================
 # HITUNG SELISIH
-# ============================================================
 
 selisih_harga_satuan = abs(harga_rule_based - prediksi_ml)
 selisih_total_harga = abs(total_rule_based - total_prediksi_ml)
 
 
-# ============================================================
 # SIMPAN HASIL
-# ============================================================
+
 
 hasil_prediksi = {
     "input_pesanan": data_pesanan,
@@ -203,9 +192,8 @@ with open(OUTPUT_PATH, "w") as file:
     json.dump(hasil_prediksi, file, indent=4)
 
 
-# ============================================================
 # OUTPUT TERMINAL
-# ============================================================
+
 
 print("\nHASIL PREDIKSI PESANAN BARU")
 print("=" * 70)

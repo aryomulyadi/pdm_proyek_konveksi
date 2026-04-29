@@ -14,9 +14,9 @@ from sklearn.ensemble import RandomForestRegressor, GradientBoostingRegressor
 from sklearn.linear_model import LinearRegression
 
 
-# ============================================================
+
 # PATH
-# ============================================================
+
 
 TRAIN_PATH = "data/prepared/train.csv"
 TEST_PATH = "data/prepared/test.csv"
@@ -33,17 +33,14 @@ os.makedirs(MODEL_DIR, exist_ok=True)
 os.makedirs(METRICS_DIR, exist_ok=True)
 
 
-# ============================================================
 # LOAD DATA
-# ============================================================
+
 
 train_df = pd.read_csv(TRAIN_PATH)
 test_df = pd.read_csv(TEST_PATH)
 
 
-# ============================================================
 # FITUR DAN TARGET
-# ============================================================
 
 target = "harga_satuan"
 
@@ -65,9 +62,7 @@ X_test = test_df[features]
 y_test = test_df[target]
 
 
-# ============================================================
 # PREPROCESSING
-# ============================================================
 
 numeric_features = ["jumlah_pesanan"]
 
@@ -103,9 +98,8 @@ def create_preprocessor():
     return preprocessor
 
 
-# ============================================================
 # DAFTAR MODEL
-# ============================================================
+
 
 models = {
     "Decision Tree": DecisionTreeRegressor(
@@ -133,9 +127,8 @@ models = {
 }
 
 
-# ============================================================
+
 # FUNGSI EVALUASI
-# ============================================================
 
 def calculate_metrics(y_true, y_pred):
     """
@@ -151,9 +144,7 @@ def calculate_metrics(y_true, y_pred):
     return mae, rmse, r2
 
 
-# ============================================================
 # TRAINING DAN EVALUASI MODEL
-# ============================================================
 
 experiment_results = []
 trained_pipelines = {}
@@ -216,9 +207,7 @@ for model_name, model in models.items():
     print("-" * 70)
 
 
-# ============================================================
 # SIMPAN LOG EKSPERIMEN
-# ============================================================
 
 experiment_df = pd.DataFrame(experiment_results)
 
@@ -230,9 +219,7 @@ experiment_df = experiment_df.sort_values(
 experiment_df.to_csv(EXPERIMENT_LOG_PATH, index=False)
 
 
-# ============================================================
 # PILIH MODEL TERBAIK
-# ============================================================
 
 best_result = experiment_df.iloc[0].to_dict()
 best_model_name = best_result["model"]
@@ -244,9 +231,8 @@ with open(BEST_MODEL_INFO_PATH, "w") as file:
     json.dump(best_result, file, indent=4)
 
 
-# ============================================================
 # SIMPAN PREDIKSI MODEL TERBAIK
-# ============================================================
+
 
 best_predictions = best_pipeline.predict(X_test)
 
@@ -259,9 +245,7 @@ prediction_df["selisih_error"] = (
 prediction_df.to_csv(BEST_MODEL_PREDICTIONS_PATH, index=False)
 
 
-# ============================================================
 # OUTPUT AKHIR
-# ============================================================
 
 print("\nLOG EKSPERIMEN TERSIMPAN DI:")
 print(EXPERIMENT_LOG_PATH)

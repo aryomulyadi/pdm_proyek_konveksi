@@ -85,8 +85,8 @@ stages:
       size: 21492
     - path: src/modeling.py
       hash: md5
-      md5: 69b7c5d4820b330d6be6e8e50598a538
-      size: 7864
+      md5: 9d0968bbd7bfdbf45fe47ed66b0ef136
+      size: 6468
     outs:
     - path: metrics/best_model.json
       hash: md5
@@ -129,10 +129,10 @@ stages:
       size: 276660
     - path: src/predict.py
       hash: md5
-      md5: cc9aca15b190fc85ada5728ddea78b9d
-      size: 6506
+      md5: 66bc667680018df00b2ca22919533035
+      size: 5365
     outs:
     - path: metrics/single_prediction_result.json
       hash: md5
-      md5: 1a44d8beff27d6e09520778a7b6db38f
-      size: 674
+      md5: 3993f609921cf63febed52f719c4e376
+      size: 676
